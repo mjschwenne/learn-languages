@@ -6,6 +6,8 @@ let rec factorial (n:nat) : r:nat{r >= 1 /\ r >= n} =
   then 1
   else n * factorial (n - 1)
 
+let _ = exists (n : nat). factorial n > n * n 
+
 let sqr_is_nat (x:int) : unit = assert (x * x >= 0)
 
 let max x y = if x > y then x else y
@@ -17,4 +19,6 @@ let sqr_is_pos' (x:int{x <> 0}) = assert (x * x > 0)
 
 let _ : nat = 4 % 2
 
-// let factor : unit = assert (forall (x:nat) (y:nat{y > 0}). x % y = 0 ==> (exists (z:nat). x = z * y))
+let sqr_is_pos'' (x:int) : y:nat{y > 0} = admit ()
+
+let factor : unit = assert (forall (x:nat) (y:nat{y > 0}). x % y = 0 ==> (exists (z:nat). x = z * y))
