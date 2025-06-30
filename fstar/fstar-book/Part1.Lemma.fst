@@ -78,9 +78,9 @@ let rec reverse #a (l:list a)
   : list a
   = match l with
     | [] -> []
-    | hd :: tl -> append (reverse tl) [hd]
+    | hd :: tl -> (reverse tl) @ [hd]
 
-let snoc l h = append l [h]
+let snoc l h = l @ [h]
 
 let rec snoc_cons #a (l:list a) (h:a) : 
   Lemma (reverse (snoc l h) == h :: reverse l)
@@ -152,7 +152,9 @@ let rec map #a #b (f: a -> b) (l:list a)
     | hd::tl -> f hd :: map f tl
 
 //write a type for find
-let rec find f l =
+// My first answer uses normal F* syntax, but I like the logical implication style more
+// let rec find #a (f: a -> bool) (l: list a) : r:(option a){match r with | Some x -> f x | None -> True} =
+let rec find #a (f: a -> bool) (l: list a) : o:(option a){Some? o ==> f (Some?.v o)} =
   match l with
   | [] -> None
   | hd :: tl -> if f hd then Some hd else find f tl
@@ -160,11 +162,12 @@ let rec find f l =
 ////////////////////////////////////////////////////////////////////////////////
 
 //Write a simpler type for find and prove the lemmas below
-let rec find_alt f l =
+let rec find_alt #a (f: a -> bool) (l:list a) : option a =
   match l with
   | [] -> None
   | hd :: tl -> if f hd then Some hd else find_alt f tl
 
+// This lemma was already complete in the exercise file
 let rec find_alt_ok #a (f:a -> bool) (l:list a)
   : Lemma (match find_alt f l with
            | Some x -> f x
@@ -181,9 +184,17 @@ let rec fold_left #a #b (f: b -> a -> a) (l: list b) (acc:a)
     | [] -> acc
     | hd :: tl -> fold_left f tl (f hd acc)
 
+let rec fold_left_Cons_is_rev' #a (l1 l2:list a) :
+  Lemma (fold_left Cons l1 l2 == (reverse l1) @ l2)
+  = match l1 with 
+    | [] -> ()
+    | hd :: tl -> fold_left_Cons_is_rev' tl (hd :: l2);
+                append_assoc (reverse tl) [hd] l2
+
 let fold_left_Cons_is_rev (#a:Type) (l:list a)
   : Lemma (fold_left Cons l [] == reverse l)
-  = admit()
+  = fold_left_Cons_is_rev' l [];
+    append_l_nil (reverse l)
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -195,9 +206,24 @@ let rec rev_aux #a (l1 l2:list a)
 
 let rev #a (l:list a) : list a = rev_aux [] l
 
+
+// The reason that this wasn't verifying is SO STUPID! 
+// 
+// Basically all of the functions were written using the 
+// `append` function defined in this file, which means that 
+// none of the standard append lemmas work!
+let rec rev_is_ok_aux #a (l1 l2:list a)
+  : Lemma (ensures (rev_aux l1 l2 == (reverse l2) @ l1))
+          (decreases l2)
+  = match l2 with
+    | [] -> ()
+    | hd :: tl -> rev_is_ok_aux (hd :: l1) tl;
+                append_assoc (reverse tl) [hd] l1
+
 let rev_is_ok #a (l:list a)
   : Lemma (rev l == reverse l)
-  = admit()
+  = rev_is_ok_aux [] l;
+    append_l_nil (reverse l)
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -209,6 +235,18 @@ let rec fib (a b n:nat)
 
 let fib_tail (n:nat) : nat = fib 1 1 n
 
+// In full transparency, I did have to look at the solution for this one. 
+// The auxiliary lemma unifies the structure of the two Fibonacci functions. 
+// While I had realized what the `a` and `b` args were doing in the `fib` function, 
+// I hadn't realized that an auxiliary lemma was needed at all... 
+//
+// The aux lemma also reminds us that you can use `fib` to compute values in the 
+// sequence that don't start at the beginning.
+
+let rec fib_is_ok_aux (n k:nat) :
+  Lemma (fib (fibonacci k) (fibonacci (k + 1)) n == fibonacci (k + n))
+  = if n = 0 then () else fib_is_ok_aux (n - 1) (k + 1)  
+
 let fib_tail_is_ok (n:nat)
   : Lemma (fib_tail n == fibonacci n)
-  = admit()
+  = fib_is_ok_aux n 0

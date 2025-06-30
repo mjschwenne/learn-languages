@@ -47,6 +47,8 @@
               fstar-pkg
               karamel-pkg
               everparse-pkg
+              rocq-core
+              rocqPackages.stdlib
               just
               dir-locals
             ];
