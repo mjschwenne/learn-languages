@@ -1,8 +1,7 @@
-#+TITLE: Jane Street OCaml Workshop
+#+TITLE: OCaml
 
 This repo contains my solutions to the exercises presented in [[https://github.com/janestreet/learn-ocaml-workshop][janestreet/learn-ocaml-workshop]].
 
-* Documentation and resources
 ** OCaml
    - [[https://dev.realworldocaml.org/toc.html][Real World OCaml]]
    - [[http://caml.inria.fr/pub/docs/manual-ocaml/][OCaml manual]]
@@ -12,4 +11,27 @@ This repo contains my solutions to the exercises presented in [[https://github.c
 ** dune
    - [[https://www.youtube.com/watch?v=BNZhmMAJarw][Video tutorial]]
    - [[https://dune.readthedocs.io/en/latest/][Manual]]
+     
+* Progress
 
+- [X] Introduction
+- [X] Basic Types
+- [X] Define Functions
+- [X] Call Functions
+- [X] Twice
+- [X] Pattern Matching
+- [X] Simple Recursion
+- [X] List Intro
+- [X] List Range
+- [X] Higher Order Functions
+- [X] Labeled Arguments
+- [X] List Functions
+- [X] Arrays
+- [X] Variants
+- [X] Options
+- [X] Tuples
+- [X] Records
+- [X] Mutable Records
+- [X] Refs
+- [X] Anonymous Functions
+- [X] Reading Sigs

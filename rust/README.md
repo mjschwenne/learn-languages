@@ -18,6 +18,17 @@ writing your own programs, one exercise at a time.
 Go to [rust-exercises.com](https://rust-exercises.com) and follow the instructions there
 to get started with the course.
 
+## Progress 
+
+- [X] Intro 
+- [ ] Basic Calculator
+- [ ] Ticket v1
+- [ ] Traits 
+- [ ] Ticket v2
+- [ ] Ticket Management
+- [ ] Threads
+- [ ] Futures
+
 ## Requirements
 
 - **Rust** (follow instructions [here](https://www.rust-lang.org/tools/install)).\
