@@ -1,0 +1,27 @@
+#+TITLE: Rocq
+
+I have been working my way through the [[https://softwarefoundations.cis.upenn.edu/][Software Foundations]] series. Software
+Foundations explicitly asks you not to post solutions to their exercises online,
+which I will respect. This document serves to track my progress through the
+series.
+
+* Progress
+
+** Volume 1: Logical Foundations
+
+- [X] Preface
+- [X] Functional Programming in Coq
+- [X] Proof by Induction
+- [X] Working with Structured Data
+- [X] Polymorphism and Higher-Order Functions
+- [X] More Basic Tactics
+- [X] Logic in Coq
+- [ ] Inductively Defined Propositions
+- [ ] Total and Partial Maps
+- [ ] The Curry-Howard Correspondence
+- [ ] Induction Principles
+- [ ] Simple Imperative Programs
+- [ ] Lexing and Parsing in Coq
+- [ ] Extracting =OCaml= from Coq
+- [ ] More Automation
+- [ ] A Streamlined Treatment of Automation

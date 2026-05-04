@@ -1,0 +1,27 @@
+#+TITLE: Haskell
+
+Exercises originally from [[https://github.com/moocfi/haskell-mooc/tree/master][moocfi/haskell-mooc]].
+
+Recommended reading:
+
+- [[https://haskell.mooc.fi/][Haskell MOOC]]
+- [[https://learnyouahaskell.github.io/chapters.html][Learn You a Haskell for Great Good!]]
+
+* Progress 
+
+- [ ] And so It Begins
+- [ ] Either You Die a Hero
+- [ ] Catamorphic
+- [ ] Real Classy
+- [ ] You Need String for a Knot
+- [ ] Working Class Hero
+- [ ] New Constellations
+- [ ] The Aftertaste
+- [ ] Recap of Part 1
+- [ ] Reductionism
+- [ ] =RealWorld -> (a, RealWorld)=
+- [ ] fmap fmap fmap
+- [ ] A Monoid in the Category of Problems
+- [ ] Let's Use Some Libraries
+- [ ] You're Valid Even Without Monads
+- [ ] Odds and Ends
